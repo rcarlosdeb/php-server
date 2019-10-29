@@ -1,26 +1,14 @@
-<?php
-$host = 'mysql';
-$user = 'root';
-$pass = '12345678';
-$base = 'asistencia';
-$conn = new mysqli($host, $user, $pass, $base);
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gym</title>
+</head>
+<body>
 
-//if ($conn->connect_error) {
-//    die("Connection failed: " . $conn->connect_error);
-//} else {
-//    echo "Coneccion correcta!";
-//}
-$sql = $conn->query("select * from tipo_usuario");
-$res = array();
-while($row = $sql->fetch_assoc()){
-$res[]=$row;
-}
+<h4>Aqui se iran listando los recursos disponibles para consumir desde la aplicacion de flutter</h4>
 
-echo json_encode($res);
-//echo "number of rows: " . $res->num_rows;
-//$sql = "select * from tipo_usuario";
-//$result = $conn->query($sql) or die($conn->error);
-//while($row = $result->fetch_assoc()){
-//    echo "holi";
-//}
-?>
+</body>
+</html>
