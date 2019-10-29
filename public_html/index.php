@@ -10,6 +10,7 @@
 
 <h4>Aqui se iran listando los recursos disponibles para consumir desde la aplicacion de flutter</h4>
 <p>- <a href="http://35.232.215.93/apis/user.php">Todos los usuarios</a>
+<br><br> Lista de todos los usuarios actualmente en la base de datos, no se muestra la contraseña para evitar fallos de seguridad
 </p>
 
 </body>
