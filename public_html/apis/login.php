@@ -23,7 +23,6 @@ if(!$user->email){
                     "nombres" => $row["nombre_usuario"],
                     "apellidos" => $row["apellido_usuario"],
                     "user" => $row["user"],
-                    "pass" => $row["pass"],
                     "email" => $row["email"],
                     "direccion" => $row["direccion"],
                     "id_tipo_usuario" => $row["id_tipo_usuario"],
