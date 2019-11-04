@@ -26,7 +26,7 @@
 
 <p>- <a href="http://35.232.215.93/apis/singup.php">Registro de usuario</a>
 <br><br> Se debera usar la url anterior para hacer POST de un json que debe contener al menos las propiedades: nombres, email, pass, id_tipo_usuario
-<br>{nombres:'Roberto Carlos', email:'rcarlosdeb@gmail.com', pass:'contrasenia', id_tipo_usuario:2}
+<br>Ejempplo: {"nombres":"Roberto carlos", "apellidos":"Castro", "user":"rcarlosdeb", "pass":"12345678","email":"rcarlosdeb@gmail.com", "id_tipo_usuario":2, "direccion":"santa ana, santa ana"}
 <br> El resultado para registro correcto es un estatus 200
 <br> El resultado para un registro incorrecto por falta de propiedades u otro error es estatus 404
 </p>
