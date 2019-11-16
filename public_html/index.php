@@ -35,5 +35,12 @@
 <p>- <a href="http://35.232.215.93/apis/docentes.php">Obtener los usuarios docentes</a>
 <br><br> Lista de todos los docentes actualmente en la base de datos
 </p>
+
+
+<p>- <a href="http://35.232.215.93/apis/carreras.php">Obtener las carreras</a>
+<br><br> Lista de todos las carreas actualmente en la base de datos
+</p>
+
+
 </body>
 </html>
