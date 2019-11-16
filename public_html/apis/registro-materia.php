@@ -19,7 +19,7 @@ if(!$user->nombre_materia){
         sendResponse(500,$conn,'Error de coneccion con el servidor');
     }else{
         $sql="INSERT INTO materia(nombre_materia, codigo, activo, id_carrera, id_usuario)";
-        $sql .= "VALUES ('".$user->nombre_materia."','".$user->codigo."','".$user->activo."','".$user.id_carrera."','".$user->id_usuario."')'";
+        $sql .= "VALUES ('".$user->nombre_materia."','".$user->codigo."','".$user->activo."','".$user.id_carrera."','".$user->id_usuario."')";
         $result = $conn->query($sql);
         if ($result) {
             sendResponse(200, $result , 'Registro realizado correctamente.');
