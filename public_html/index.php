@@ -42,5 +42,13 @@
 </p>
 
 
+<p>- <a href="http://35.232.215.93/apis/registro-materia.php">Registro de materias</a>
+<br><br> Se debera usar la url anterior para hacer POST de un json que debe contener al menos las propiedades: nombre_materia, codigo, activo, id_usuario
+<br> Donde el id_usuario debe ser el id_usuario del docente que impartira la materia
+<br>Ejempplo: {"nombre_materia":"Introduccion a la informatica", "codigo":"IAI135", "activo":true, "id_carrera":1, "id_usuario":3}
+<br> El resultado para registro correcto es un estatus 200
+<br> El resultado para un registro incorrecto por falta de propiedades u otro error es estatus 404
+</p>
+
 </body>
 </html>
