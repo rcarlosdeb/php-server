@@ -36,18 +36,19 @@ CREATE TABLE IF NOT EXISTS `asistencia`.`usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT,
   `nombre_usuario` VARCHAR(60) NOT NULL,
   `apellido_usuario` VARCHAR(60) NOT NULL,
-  `carnet` VARCHAR(15) NOT NULL,
+  `user` VARCHAR(15) NOT NULL,
+  `pass` VARCHAR(64) NOT NULL,
+  `email` VARCHAR(64) NOT NULL,
   `direccion` VARCHAR(45) NULL,
   `id_tipo_usuario` INT NULL,
   PRIMARY KEY (`id_usuario`),
   INDEX `fk_tipo_usuario_idx` (`id_tipo_usuario` ASC),
-  CONSTRAINT `fk_tipo_usuario`
+  CONSTRAINT `fk_usuario_tipo_usuario`
     FOREIGN KEY (`id_tipo_usuario`)
     REFERENCES `asistencia`.`tipo_usuario` (`id_tipo_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `asistencia`.`hora`
@@ -81,12 +82,12 @@ CREATE TABLE IF NOT EXISTS `asistencia`.`horario` (
   PRIMARY KEY (`id_horario`),
   INDEX `fk_id_hora_idx` (`id_hora` ASC),
   INDEX `fk_id_dia_idx` (`id_dia` ASC),
-  CONSTRAINT `fk_id_hora`
+  CONSTRAINT `fk_horario_hora`
     FOREIGN KEY (`id_hora`)
     REFERENCES `asistencia`.`hora` (`id_hora`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_id_dia`
+  CONSTRAINT `fk_horario_dia`
     FOREIGN KEY (`id_dia`)
     REFERENCES `asistencia`.`dia` (`id_dia`)
     ON DELETE CASCADE
@@ -117,12 +118,12 @@ CREATE TABLE IF NOT EXISTS `asistencia`.`usuario_materia` (
   PRIMARY KEY (`id_usuario_materia`),
   INDEX `fk_id_usuario_idx` (`id_usuario` ASC),
   INDEX `fk_id_materia_idx` (`id_materia` ASC),
-  CONSTRAINT `fk_id_usuario`
+  CONSTRAINT `fk_usuario_materia_usuario`
     FOREIGN KEY (`id_usuario`)
     REFERENCES `asistencia`.`usuario` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_id_materia`
+  CONSTRAINT `fk_usuario_materia_materia`
     FOREIGN KEY (`id_materia`)
     REFERENCES `asistencia`.`materia` (`id_materia`)
     ON DELETE NO ACTION
@@ -141,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `asistencia`.`asistencia` (
   `id_usuario_materia` INT NOT NULL,
   PRIMARY KEY (`id_asistencia`),
   INDEX `fk_id_usuario_materia_idx` (`id_usuario_materia` ASC),
-  CONSTRAINT `fk_id_usuario_materia`
+  CONSTRAINT `fk_asistencia_usuario_materia`
     FOREIGN KEY (`id_usuario_materia`)
     REFERENCES `asistencia`.`usuario_materia` (`id_usuario_materia`)
     ON DELETE NO ACTION
@@ -170,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `asistencia`.`insignia` (
   `id_tipo_insignia` INT NOT NULL,
   PRIMARY KEY (`id_insignia`),
   INDEX `fk_id_tipo_insignia_idx` (`id_tipo_insignia` ASC),
-  CONSTRAINT `fk_id_tipo_insignia`
+  CONSTRAINT `fk_insignia_tipo_insignia`
     FOREIGN KEY (`id_tipo_insignia`)
     REFERENCES `asistencia`.`tipo_insignia` (`id_tipo_insignia`)
     ON DELETE NO ACTION
@@ -188,12 +189,12 @@ CREATE TABLE IF NOT EXISTS `asistencia`.`usuario_insignia` (
   PRIMARY KEY (`id_usuario_insignia`),
   INDEX `fk_id_usuario_idx` (`id_usuario` ASC),
   INDEX `fk_id_insignia_idx` (`id_insignia` ASC),
-  CONSTRAINT `fk_id_usuario`
+  CONSTRAINT `fk_usuario_insignia_usuario`
     FOREIGN KEY (`id_usuario`)
     REFERENCES `asistencia`.`usuario` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_id_insignia`
+  CONSTRAINT `fk_usuario_insignia_insignia`
     FOREIGN KEY (`id_insignia`)
     REFERENCES `asistencia`.`insignia` (`id_insignia`)
     ON DELETE NO ACTION
@@ -211,14 +212,44 @@ CREATE TABLE IF NOT EXISTS `asistencia`.`horario_materia` (
   PRIMARY KEY (`id_horario_materia`),
   INDEX `fk_id_horario_idx` (`id_horario` ASC),
   INDEX `fk_id_materia_idx` (`id_materia` ASC),
-  CONSTRAINT `fk_id_horario`
+  CONSTRAINT `fk_horario_materia_horario`
     FOREIGN KEY (`id_horario`)
     REFERENCES `asistencia`.`horario` (`id_horario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_id_materia`
+  CONSTRAINT `fk_horario_materia_materia`
     FOREIGN KEY (`id_materia`)
     REFERENCES `asistencia`.`materia` (`id_materia`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `asistencia`.`departamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `asistencia`.`departamento` (
+  `id_departamento` INT NOT NULL AUTO_INCREMENT,
+  `nombre_departamento` VARCHAR(45) NOT NULL,
+  `codigo_departamento` VARCHAR(45) NOT NULL,
+  `facultad` VARCHAR(65),
+  PRIMARY KEY (`id_departamento`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `asistencia`.`carrera`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `asistencia`.`carrera` (
+  `id_carrera` INT NOT NULL AUTO_INCREMENT,
+  `nombre_carrera` VARCHAR(45) NOT NULL,
+  `codigo_carrera` VARCHAR(45) NOT NULL,
+  `activo` TINYINT(1) NOT NULL,
+  `id_departamento` INT NOT NULL,
+  PRIMARY KEY (`id_carrera`),
+  INDEX `fk_id_carrera_idx` (`id_carrera` ASC),
+  CONSTRAINT `fk_carrera_departamento`
+    FOREIGN KEY (`id_departamento`)
+    REFERENCES `asistencia`.`departamento` (`id_departamento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
