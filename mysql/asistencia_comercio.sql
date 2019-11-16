@@ -254,39 +254,6 @@ CREATE TABLE IF NOT EXISTS `asistencia`.`carrera` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `asistencia`.`institucion`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `asistencia`.`institucion` (
-)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `asistencia`.`tipo_institucion`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `asistencia`.`tipo_institucion` (
-)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `asistencia`.`institucion_caracteristica`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `asistencia`.`institucion_caracteristica` (
-)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `asistencia`.`caracteristica`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `asistencia`.`caracteristica` (
-)
-ENGINE = InnoDB;
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
