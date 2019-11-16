@@ -31,5 +31,9 @@
 <br> El resultado para un registro incorrecto por falta de propiedades u otro error es estatus 404
 </p>
 
+
+<p>- <a href="http://35.232.215.93/apis/docentes.php">Obtener los usuarios docentes</a>
+<br><br> Lista de todos los docentes actualmente en la base de datos
+</p>
 </body>
 </html>
