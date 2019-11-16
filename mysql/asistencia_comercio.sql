@@ -104,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `asistencia`.`materia` (
   `codigo` VARCHAR(45) NOT NULL,
   `activo` TINYINT(1) NOT NULL,
   `id_carrera` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
   PRIMARY KEY (`id_materia`))
 ENGINE = InnoDB;
 
