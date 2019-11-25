@@ -3,8 +3,6 @@ include_once('../common/include.php');
 $conn=getConnection();
 $id=$_GET["user"];
 $docente=$_GET["docente"];
-print_r($id);
-print_r($docente);
 if($id==null && $docente==null){
     if($conn==null){
         sendResponse(500,$conn,'Error de coneccion con el servidor');
