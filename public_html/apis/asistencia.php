@@ -11,8 +11,9 @@ if(!$user->id_usuario){
     if($conn==null){
         sendResponse(500,$conn,'Error de coneccion con el servidor');
     }else{
+        date_default_timezone_set('America/Los_Angeles');
         $fecha = "".date("Y")."-".date("m")."-".date("d")."";
-        $sql2="SELECT id_usuario_materia FROM usuario_materia WHERE id_usuario=".$user->id_usuario." AND id_materia=".$user->id_materia
+        $sql2="SELECT id_usuario_materia FROM usuario_materia WHERE id_usuario=".$user->id_usuario." AND id_materia=".$user->id_materia;
         $sql="INSERT INTO usuario_materia(id_usuario,id_materia)";
         $sql .= "VALUES ('".$user->id_usuario."','".$user->id_materia."')";
         //$result = $conn->query($sql);
@@ -25,7 +26,8 @@ if(!$user->id_usuario){
                 );
                 array_push($arreglo,$ar);
             }
-            sendResponse(200,$arreglo[0],'Id_usuario_materia');
+            $id_user=$arreglo[0]["id_usuario_materia"];
+            sendResponse(200,$id_user,'Id_usuario_materia');
         } else {
             sendResponse(404, [] ,'Materia no registrado');
         }
