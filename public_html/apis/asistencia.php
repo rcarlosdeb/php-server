@@ -14,8 +14,7 @@ if(!$user->id_usuario){
         date_default_timezone_set('America/Los_Angeles');
         $fecha = "".date("Y")."-".date("m")."-".date("d")."";
         $sql2="SELECT id_usuario_materia FROM usuario_materia WHERE id_usuario=".$user->id_usuario." AND id_materia=".$user->id_materia;
-        $sql="INSERT INTO usuario_materia(id_usuario,id_materia)";
-        $sql .= "VALUES ('".$user->id_usuario."','".$user->id_materia."')";
+        
         //$result = $conn->query($sql);
         $result2 = $conn->query($sql2);
         if ($result2) {
@@ -27,7 +26,15 @@ if(!$user->id_usuario){
                 array_push($arreglo,$ar);
             }
             $id_user=$arreglo[0]["id_usuario_materia"];
-            sendResponse(200,$id_user,'Id_usuario_materia');
+            $sql=" INSERT INTO asistencia(qr,validacion,fecha,id_usuario_materia)";
+            $sql .= "VALUES (1,1,'".$fecha."','".$id_user."')";
+            $result = $conn->query($sql);
+            if ($result) {
+                sendResponse(200,$id_user,'Asistencia registrada');
+            }else{
+                sendResponse(404,$id_user,'Asistencia no registrada');
+            }
+            
         } else {
             sendResponse(404, [] ,'Materia no registrado');
         }
