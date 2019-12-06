@@ -1,0 +1,34 @@
+<?php
+include_once('../common/include.php');
+include_once('../common/encipher.php');
+$user = json_decode(file_get_contents("php://input"));
+if(!$user->id_usuario){
+    sendResponse(400, [] , 'ID usuario Requiredo');  
+}else if(!$user->id_materia){
+    sendResponse(400, [] , 'ID de materia Requiredo');  
+}else{
+    $conn=getConnection();
+    if($conn==null){
+        sendResponse(500,$conn,'Error de coneccion con el servidor');
+    }else{
+        $fecha = "".date("Y")."-".date("m")."-".date("d")."";
+        $sql2="SELECT id_usuario_materia FROM usuario_materia WHERE id_usuario=".$user->id_usuario." AND id_materia=".$user->id_materia
+        $sql="INSERT INTO usuario_materia(id_usuario,id_materia)";
+        $sql .= "VALUES ('".$user->id_usuario."','".$user->id_materia."')";
+        //$result = $conn->query($sql);
+        $result2 = $conn->query($sql2);
+        if ($result2) {
+            $arreglo=array();
+            while($row = $result2->fetch_assoc()) {
+                $ar=array(
+                    "id_usuario_materia" =>  $row["id_usuario_materia"],
+                );
+                array_push($arreglo,$ar);
+            }
+            sendResponse(200,$arreglo[0],'Id_usuario_materia');
+        } else {
+            sendResponse(404, [] ,'Materia no registrado');
+        }
+        $conn->close();
+    }
+}
